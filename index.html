@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="main.js">
+    </script>
+  </head>
+
+  <body>
+    <div class="timeline">
+      <a href="#"><span class="logo">LOGO HERE</span></a>
+      <nav class="navbar">
+        <li><input type="text" name="name" placeholder="search now..."></li>
+        <li><a href="#" class="button">share me</a></li>
+      </nav>
+
+      <ul class="events">
+        <li class="event">
+          <div class="">
+            <header>
+                <h1>This is Linh kham</h1>
+                <h2>Dont be kham like Linh</h2>
+                <p>
+                  this is description of event.
+
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/200x250" alt="" />
+            </article>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <header>
+                <h1>This is Phuc thoi</h1>
+                <h2>Dont be thoi like Phuc</h2>
+                <p>
+                  this is description of event
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/200x250" alt="" />
+            </article>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <header>
+                <h4>this is Linh kham</h4>
+                <p>
+                  this is description of event
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/150x200" alt="" />
+            </article>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <header>
+                <h4>this is Linh kham</h4>
+                <p>
+                  this is description of event Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/150x200" alt="" />
+            </article>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <h4>this is Phuc thoi</h4>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <h4>this is Phuc thoi</h4>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <header>
+                <h1>This is Linh kham</h1>
+                <h2>Dont be kham like Linh</h2>
+                <p>
+                  this is description of event.
+
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/200x250" alt="" />
+            </article>
+          </div>
+        </li>
+        <li class="event">
+          <div class="">
+            <header>
+                <h1>This is Phuc thoi</h1>
+                <h2>Dont be thoi like Phuc</h2>
+                <p>
+                  this is description of event
+                </p>
+            </header>
+            <article class="">
+              <img src="http://placehold.it/200x250" alt="" />
+            </article>
+          </div>
+        </li>
+
+        </ul>
+    </div>
+    <script type="text/javascript">
+
+      var mouseWheelEvt = function (event) {
+        if (document.body.doScroll)
+            document.body.doScroll(event.wheelDelta>0?"left":"right");
+        else if ((event.wheelDelta || event.detail) > 0)
+            document.body.scrollLeft -= 50;
+        else
+            document.body.scrollLeft += 50;
+
+        return false;
+      }
+      document.body.addEventListener("mousewheel", mouseWheelEvt);
+    </script>
+  </body>
+</html>
