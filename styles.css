@@ -47,17 +47,18 @@ body:after{
   height: 30em;
   padding: 1em;
   vertical-align: top;
-  /*border: solid 1px black;*/
   background-color: black;
   opacity: 0.9;
 }
 
 header {
   height: 10em;
-  margin-bottom: 1em;
+  padding-bottom: 1em;
   border-bottom: solid 1px white;
 }
-
+.media {
+  margin-top: 2em;
+}
 .navbar {
   position: fixed;
   right: 0;
