@@ -2,7 +2,7 @@
 timelineApp.controller("timelineController", ["$scope", function($scope) {
     
     // Mock event for ng-repeat
-    var numberOfEvent = 5;
+    var numberOfEvent = 1 ;
     var eventMocks = new Array(numberOfEvent);
     for (var i = 0; i < eventMocks.length; i ++) 
         eventMocks[i] = "Foo" + i;
