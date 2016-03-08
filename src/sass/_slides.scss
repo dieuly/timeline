@@ -1,0 +1,86 @@
+.timeline-container {
+    position: fixed;
+    width: 92%;
+    left: 3%;
+    height: 60vh;
+    top: 20%;
+    padding: 20px 10px;
+}
+
+.slick-container, .slick-list, .slick-track {
+    height: 100%;
+}
+
+.slick-list {
+    overflow: visible;
+}
+.slick-track {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 0;
+}
+
+.custom-slick-slide {
+    height: 100%;
+    background-color: white;
+    margin: 0 10px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    padding: 15px;
+    // Top thumb
+    .center-thumb-container {
+        width: 100%;
+        height: 40%;
+        overflow: hidden;
+    }
+    // Middle thumb
+    .middle-thumb-container {
+        height: 20%;
+        margin-top: 10px;
+        overflow: hidden;
+        .middle-single-item {
+            .middle-item {
+                width: 100%;
+                overflow: hidden;
+             }    
+        }
+        .middle-multiple-item {
+            .middle-item {
+                display: inline-block;
+                width: 49%;
+                float: right;
+                overflow: hidden;
+            }
+            .middle-item:first-child {
+                float: left;
+             }
+        }
+    }
+    
+    // Bottom text
+    .description {
+        height: 37%;
+        color: white;
+        overflow: hidden;
+        font-size: 15px;
+        line-height: 21px;
+        position: relative;
+        .readmore-container {
+            width: 100%;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            text-align: center;
+        }
+        .readmore-button {
+            background: grey;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+            display: inline-block;
+            padding: 9px 44px;
+            border-radius: 27px;
+        }
+    }
+    
+}
+

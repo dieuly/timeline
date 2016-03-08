@@ -1,4 +1,6 @@
-var timelineApp = angular.module("timelineApp", [])
+var timelineApp = angular.module("timelineApp", [
+    "slickCarousel"
+])
 
 // Inital config
 timelineApp.run(["$rootScope", function($rootScope) {

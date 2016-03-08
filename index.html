@@ -4,33 +4,70 @@
     <meta charset="utf-8">
     <title>{{root.appTitle}}</title>
     <link rel="stylesheet" href="dist/assets/css/styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>-->
 </head>
 
 <body ng-controller="timelineController">
-    <div class="timeline">
-        <nav class="navbar">
-            <li><input type="text" name="name" placeholder="search now..."></li>
-            <li><a href="#" class="button">share</a></li>
-        </nav>
-
-        <ul class="events">
-
-            <li ng-repeat="i in events" class="event">
-                <div class="">
-                    <header>
-                        <h1>Event title</h1>
-                        <h2>Timestamp - Timeperiod</h2>
-                        <p>Event description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae mauris mattis, maximus leo non, placerat dolor. Donec vitae quam pellentesque, sollicitudin risus vitae, accum</p>
-                    </header>
-                    <article class="media-content">
-                        <img src="http://placeimg.com/640/150/nature" alt="" />
-                        <iframe width="100%" height="300" src="https://www.youtube.com/embed/EQm9N83nu2Q" frameborder="0" allowfullscreen></iframe>
-                    </article>
-                </div>
-            </li>
+    <!-- Header -->
+    <div class="header">
+        <div class="left-info">
+            <h1>Tekniikan museo</h1>
+        </div>
+        <div class="right-info">
             
-        </ul>
+        </div>
+    </div>
+    
+    <!-- Normal timeline-->
+    <div class="timeline-container">
+        <slick settings="slickConfig" class="slick-container" > 
+            <div ng-repeat="event in events" class="custom-slick-slide">
+                <!-- Top item -->
+                <div class="center-thumb-container">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+                
+                <!-- Middle item -->
+                <div class="middle-thumb-container">
+                    <!-- For 1 item in the middle -->
+                    <div ng-if="event.hasSingleItem" class="middle-single-item">
+                        <div class="middle-item">
+                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                        </div>
+                    </div>
+                    <!-- For 2 item in the middle -->
+                    <div ng-if="!event.hasSingleItem" class="middle-multiple-item clearfix">
+                        <div class="middle-item">
+                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                        </div>
+                        <div class="middle-item">
+                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Text -->
+                <div class="description">
+                    <!-- For short enough text -->
+                    <div ng-if="event.isLongText">
+                        <p>{{event.text | elipsiWhatever: "300"}}</p>
+                        <div class="readmore-container">
+                            <span class="readmore-button">Read more</span>    
+                        </div>
+                        
+                    </div>
+                    <!-- For longer text -->
+                    <div ng-if="!event.isLongText">
+                        <p>{{event.text}}</p>
+                    </div>
+                </div>
+                
+            </div> 
+        </slick>
+    </div>
+    
+    <div class="footer">
+        
     </div>
     
     <!-- Root element of PhotoSwipe. Must have class pswp. -->

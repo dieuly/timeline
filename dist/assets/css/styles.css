@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
 	Styles for basic PhotoSwipe functionality (sliding area, open/close transitions)
@@ -766,13 +767,329 @@ a.pswp__share--download:hover {
   background: none;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
+/* Slider */
+.slick-slider {
   position: relative;
-  background: url("http://911memorialtimeline.blob.core.windows.net/media/images/timelineBackgroundGroundZero.jpg") no-repeat center center fixed;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+}
+.slick-track:before, .slick-track:after {
+  content: "";
+  display: table;
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none;
+}
+[dir="rtl"] .slick-slide {
+  float: right;
+}
+.slick-slide img {
+  display: block;
+}
+.slick-slide.slick-loading img {
+  display: none;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: block;
+}
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+/* Slider */
+.slick-loading .slick-list {
+  background: #fff url("./ajax-loader.gif") center center no-repeat;
+}
+
+/* Icons */
+@font-face {
+  font-family: "slick";
+  src: url("./fonts/slick.eot");
+  src: url("./fonts/slick.eot?#iefix") format("embedded-opentype"), url("./fonts/slick.woff") format("woff"), url("./fonts/slick.ttf") format("truetype"), url("./fonts/slick.svg#slick") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Arrows */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  display: block;
+  height: 20px;
+  width: 20px;
+  line-height: 0px;
+  font-size: 0px;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  padding: 0;
+  border: none;
+  outline: none;
+}
+.slick-prev:hover, .slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  outline: none;
+  background: transparent;
+  color: transparent;
+}
+.slick-prev:hover:before, .slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.25;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick";
+  font-size: 20px;
+  line-height: 1;
+  color: white;
+  opacity: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -25px;
+}
+[dir="rtl"] .slick-prev {
+  left: auto;
+  right: -25px;
+}
+.slick-prev:before {
+  content: "←";
+}
+[dir="rtl"] .slick-prev:before {
+  content: "→";
+}
+
+.slick-next {
+  right: -25px;
+}
+[dir="rtl"] .slick-next {
+  left: -25px;
+  right: auto;
+}
+.slick-next:before {
+  content: "→";
+}
+[dir="rtl"] .slick-next:before {
+  content: "←";
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+.slick-dots li button {
+  border: 0;
+  background: transparent;
+  display: block;
+  height: 20px;
+  width: 20px;
+  outline: none;
+  line-height: 0px;
+  font-size: 0px;
+  color: transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+.slick-dots li button:hover, .slick-dots li button:focus {
+  outline: none;
+}
+.slick-dots li button:hover:before, .slick-dots li button:focus:before {
+  opacity: 1;
+}
+.slick-dots li button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "•";
+  width: 20px;
+  height: 20px;
+  font-family: "slick";
+  font-size: 6px;
+  line-height: 20px;
+  text-align: center;
+  color: black;
+  opacity: 0.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+  color: black;
+  opacity: 0.75;
+}
+
+.timeline-container {
+  position: fixed;
+  width: 92%;
+  left: 3%;
+  height: 60vh;
+  top: 20%;
+  padding: 20px 10px;
+}
+
+.slick-container, .slick-list, .slick-track {
+  height: 100%;
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-track {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px 0;
+}
+
+.custom-slick-slide {
+  height: 100%;
+  background-color: white;
+  margin: 0 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 15px;
+}
+.custom-slick-slide .center-thumb-container {
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+}
+.custom-slick-slide .middle-thumb-container {
+  height: 20%;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.custom-slick-slide .middle-thumb-container .middle-single-item .middle-item {
+  width: 100%;
+  overflow: hidden;
+}
+.custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item {
+  display: inline-block;
+  width: 49%;
+  float: right;
+  overflow: hidden;
+}
+.custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item:first-child {
+  float: left;
+}
+.custom-slick-slide .description {
+  height: 37%;
+  color: white;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 21px;
+  position: relative;
+}
+.custom-slick-slide .description .readmore-container {
+  width: 100%;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  text-align: center;
+}
+.custom-slick-slide .description .readmore-button {
+  background: grey;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 9px 44px;
+  border-radius: 27px;
+}
+
+body {
+  font-family: sans-serif;
+  position: relative;
+  background: url("../img/background.jpg") no-repeat center center fixed;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0;
 }
 
@@ -787,69 +1104,50 @@ body:after {
   z-index: -1;
 }
 
-.timeline {
-  margin-top: 1em;
-}
-
-.timeline a {
-  text-decoration: none;
-}
-
-.logo {
-  color: #fff;
+.header {
   position: fixed;
-  top: 1em;
+  top: 0;
   left: 0;
-}
-
-.events {
-  margin-top: 7em;
-  padding-left: 0;
-  width: 9200px;
-  color: #fff;
-}
-
-.event {
-  display: inline-block;
-  width: 6%;
-  height: 60vh;
-  padding: 1em;
-  vertical-align: top;
-  /*border: solid 1px black;*/
-  background-color: black;
-  opacity: 0.9;
-}
-
-header {
-  height: 11em;
-  margin-bottom: 1em;
-  border-bottom: solid 1px white;
-}
-
-.navbar {
-  position: fixed;
-  right: 0;
-  top: 1em;
-}
-
-.navbar li {
-  display: inline-block;
-}
-
-.button {
-  text-decoration: none;
-  background-color: #fff;
-  color: #000;
-  padding: 1px 6px 2px 6px;
-  border: 1px solid black;
-}
-
-.media-content {
-  overflow: hidden;
-  padding-bottom: 20px;
-}
-.media-content img {
   width: 100%;
-  height: 150px;
-  margin-bottom: 20px;
+  padding: 15px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
 }
+.header .left-info {
+  float: left;
+}
+
+img.resize-vertical {
+  height: 100%;
+  width: auto;
+}
+
+img.resize-horizontal {
+  height: auto;
+  width: 100%;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+/* close commented backslash hack */

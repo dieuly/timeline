@@ -28,6 +28,7 @@ gulp.task('scripts', function() {
       'src/scripts/libs/*.js',
       'src/scripts/main.js',
       'src/scripts/controllers.js',
+      'src/scripts/filters.js',
       'src/scripts/ui.js'])
     .pipe(concat('index.js'))
     .pipe(gulp.dest('dist/assets/js'))
@@ -55,7 +56,7 @@ gulp.task('watch', function() {
 
   gulp.start('default');
   // Watch .scss files
-  gulp.watch('src/styles/**/*.scss', ['styles']);
+  gulp.watch('src/sass/**/*.scss', ['styles']);
 
   // Watch .js files
   gulp.watch('src/scripts/**/*.js', ['scripts']);
