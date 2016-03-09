@@ -1069,6 +1069,7 @@ a.pswp__share--download:hover {
 .timeline-container .custom-slick-slide .middle-thumb-container .middle-single-item .middle-item {
   width: 100%;
   overflow: hidden;
+  text-align: center;
 }
 .timeline-container .custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item {
   display: inline-block;

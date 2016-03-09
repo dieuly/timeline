@@ -65,7 +65,8 @@ Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posue
                     <!-- For 1 item in the middle -->
                     <div ng-if="event.hasSingleOtherContent" class="middle-single-item">
                         <div class="middle-item">
-                            <img class="" ng-src="{{event.otherContents[0].src}}" alt="">
+                            <div ng-if="event.otherContents[0].isVideo" ng-bind-html="event.otherContents[0].src"></div>
+                            <img ng-if="event.otherContents[0].isVideo" ng-src="{{event.otherContents[0].src}}" alt="">
                         </div>
                     </div>
                     <!-- For 2 item in the middle -->
@@ -82,7 +83,7 @@ Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posue
                     <!-- For short enough text -->
                     <div>
                         <p>{{event.description | elipsiWhatever: "300"}}</p>
-                        <div class="readmore-container">
+                        <div class="readmore-container" ng-click="openSingleItem($event)">
                             <span class="readmore-button">Read more</span>    
                         </div>
                 </div>

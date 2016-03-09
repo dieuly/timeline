@@ -1118,7 +1118,7 @@ timelineApp.controller("timelineController", ["$scope", "$sce", function($scope,
         item.title = item.datetime + " " + item.title;
         item.contents = generateItemsArray([item.firstItem, item.secondItem, item.thirdItem]);
         item.otherContents = item.contents.slice(1);
-        item.hasSingleOtherContent == item.otherContents.length === 1;
+        item.hasSingleOtherContent = item.otherContents.length === 1;
         return item;
     });
     
@@ -1150,25 +1150,17 @@ timelineApp.controller("timelineController", ["$scope", "$sce", function($scope,
         draggable: true,  
         autoplaySpeed: 3000,
         slidesToShow: 3,
-        infinite: true,
-        method: {},
-        event: {
-            beforeChange: function (event, slick, currentSlide, nextSlide) {
-            },
-            afterChange: function (event, slick, currentSlide, nextSlide) {
-            }
-        }
     };
     
     // Single open state view models
     $scope.isSingleOpen = false;
     
     $scope.openSingleItem = function($event) {
-        // if (!$scope.isSingleOpen) {
-        //     $scope.isSingleOpen = true;
-        // }
-        // var currentSlideIndex = $event.currentTarget.attributes["data-slick-index"].nodeValue;
-        // console.log(currentSlideIndex);
+        if (!$scope.isSingleOpen) {
+            $scope.isSingleOpen = true;
+        }
+        var currentSlideIndex = $event.currentTarget.parentNode.parentNode.parentNode.attributes["data-slick-index"].nodeValue;
+        console.log(currentSlideIndex);
     }
     
     $scope.closeSingleItem = function() {
@@ -1191,6 +1183,10 @@ timelineApp.filter("elipsiWhatever", [function($scope) {
  		var shortenned = input.substring(0, limit - 3) + "...";
  		return shortenned;
  	};
+}]);
+
+timelineApp.filter('unsafe', ["$sce", function($sce) { 
+    return $sce.trustAsHtml; 
 }]);
 // Todo: Implement smooth scrolling
 var mouseWheelEvt = function (event) {

@@ -15,3 +15,7 @@ timelineApp.filter("elipsiWhatever", [function($scope) {
  		return shortenned;
  	};
 }]);
+
+timelineApp.filter('unsafe', ["$sce", function($sce) { 
+    return $sce.trustAsHtml; 
+}]);
