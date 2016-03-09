@@ -412,9 +412,18 @@ timelineApp.controller("timelineController", ["$scope", function($scope) {
     };
     
     // Single open state view models
-    $scope.isSingleOpen = true;
-    $scope.toggleTimelineState = function() {
-        $scope.isSingleOpen = !$scope.isSingleOpen;
+    $scope.isSingleOpen = false;
+    
+    $scope.openSingleItem = function($event) {
+        if (!$scope.isSingleOpen) {
+            $scope.isSingleOpen = true;
+        }
+        var currentSlideIndex = $event.currentTarget.attributes["data-slick-index"].nodeValue;
+        console.log(currentSlideIndex);
+    }
+    
+    $scope.closeSingleItem = function() {
+        $scope.isSingleOpen = false;
     }
 }]);
 /* global timelineApp */
