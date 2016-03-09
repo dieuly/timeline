@@ -1,0 +1,176 @@
+    <!DOCTYPE html>
+<html ng-app="timelineApp">
+<head>
+    <meta charset="utf-8">
+    <title>{{root.appTitle}}</title>
+    <link rel="stylesheet" href="dist/assets/css/styles.css">
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>-->
+</head>
+
+<body ng-controller="timelineController">
+    <!-- Header -->
+    <div class="header">
+        <div class="left-info">
+            <span>Tekniikan museo</span>
+        </div>
+        <div class="right-info">
+            
+        </div>
+    </div>
+    
+    <!-- Single item-->
+    <div class="single-item" ng-class="{'single-item-show' : isSingleOpen}">
+        <div class="toolbar">
+            <div class="back-to-text">
+                <span>Back to overview</span>
+            </div>
+            <div class="event-title">
+                Title Title Title
+            </div>
+            <div class="back-to-normal-slides" ng-click="closeSingleItem()">
+                <img src="dist/assets/img/close-icon.png">
+            </div>
+        </div>
+        <div class="single-item-container">
+            <div class="current-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut accumsan tellus. Duis eleifend lectus ac nisi fringilla, vitae tristique orci fringilla. Aenean eleifend, tortor ac sodales lobortis, ex nibh aliquet nisi, vitae suscipit lectus nulla nec nulla. Praesent dictum suscipit libero sit amet gravida. Donec consectetur nulla vitae ex facilisis sodales. Nullam placerat sodales ex, ut cursus magna finibus id. In gravida, ipsum sed luctus bibendum, velit diam cursus ligula, et volutpat orci elit eget nunc.
+
+Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posuere. In hac habitasse platea dictumst. In elit tortor, maximus nec sem id, facilisis convallis sem. Aenean finibus justo neque, et ullamcorper ipsum faucibus at. Pellentesque orci erat, consectetur eu tempor non, iaculis ac ipsum. Vivamus sem dolor, varius eget neque ac, iaculis eleifend massa. Praesent euismod velit odio, eget dictum massa faucibus vel. Donec a rhoncus lacus. Ut dapibus dui vitae odio sollicitudin, nec tristique turpis molestie. Phasellus at pharetra elit. Nulla ut congue arcu, et scelerisque velit. Donec hendrerit, sapien sit amet commodo bibendum, velit urna cursus mauris, quis lobortis orci ex vitae libero. Fusce ut ornare nulla. Nunc sit amet auctor eros.
+            </div>
+            <div class="contents">
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Normal timeline-->
+    <div ng-class="{'single-open' : isSingleOpen, 'timeline-container': true}">
+        <slick settings="slickConfig" class="slick-container" > 
+            <div ng-repeat="event in events" class="custom-slick-slide">
+                <!-- Top item -->
+                <div class="center-thumb-container">
+                    <img class="" ng-src="{{event.firstItem}}" alt="">
+                </div>
+                
+                <!-- Middle item -->
+                <div class="middle-thumb-container">
+                    <!-- For 1 item in the middle -->
+                    <div ng-if="event.hasSingleOtherContent" class="middle-single-item">
+                        <div class="middle-item">
+                            <div ng-if="event.otherContents[0].isVideo" ng-bind-html="event.otherContents[0].src"></div>
+                            <img ng-if="event.otherContents[0].isVideo" ng-src="{{event.otherContents[0].src}}" alt="">
+                        </div>
+                    </div>
+                    <!-- For 2 item in the middle -->
+                    <div ng-if="!event.hasSingleOtherContent" class="middle-multiple-item clearfix">
+                        <div class="middle-item" ng-repeat="item in event.otherContents">
+                            <div ng-if="item.isVideo" ng-bind-html="item.src" ></div>
+                            <img ng-if="!item.isVideo" class="" ng-src="{{item.src}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Text -->
+                <div class="description">
+                    <!-- For short enough text -->
+                    <div>
+                        <p>{{event.description | elipsiWhatever: "300"}}</p>
+                        <div class="readmore-container" ng-click="openSingleItem($event)">
+                            <span class="readmore-button">Read more</span>    
+                        </div>
+                </div>
+                
+            </div> 
+        </slick>
+    </div>
+    
+    <div class="footer">
+        
+    </div>
+    
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+
+            <!-- Container that holds slides. 
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                              <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div> 
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<!--<script type="text/javascript" src="scripts/libs/jq.js"></script>
+<script type="text/javascript" src="scripts/libs/ng.js"></script>
+<script type="text/javascript" src="scripts/libs/photoswipe.js"></script>
+<script type="text/javascript" src="scripts/libs/photoswipe-ui.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="scripts/controllers.js"></script>
+<script type="text/javascript" src="scripts/ui.js"></script>-->
+<script type="text/javascript" src="dist/assets/js/index.js"></script>
+
+</body>
+</html>

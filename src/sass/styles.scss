@@ -1,0 +1,62 @@
+@import "helper";
+@import "ps";
+@import "ps-skin";
+@import "slick";
+@import "slides";
+$font-family: sans-serif;
+
+body {
+    font-family: $font-family;
+    position:relative;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width:100%;
+    height:100vh;
+    margin:0
+}
+
+body:after{
+    position:fixed;
+    content:"";
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:-1;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .left-info {
+        float: left;
+    }  
+    padding: 15px 10px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+}
+
+img.resize-vertical {
+    height: 100%;
+    width: auto;
+}
+img.resize-horizontal {
+    height: auto;
+    width: 100%;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
