@@ -3,84 +3,194 @@
     width: 92%;
     left: 3%;
     height: 60vh;
-    top: 20%;
+    bottom: 20%;
     padding: 20px 10px;
-}
-
-.slick-container, .slick-list, .slick-track {
-    height: 100%;
-}
-
-.slick-list {
-    overflow: visible;
-}
-.slick-track {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 20px 0;
-}
-
-.custom-slick-slide {
-    height: 100%;
-    background-color: white;
-    margin: 0 10px;
-    background-color: rgba(0,0,0,0.7);
-    border-radius: 15px;
-    padding: 15px;
-    // Top thumb
-    .center-thumb-container {
-        width: 100%;
-        height: 40%;
-        overflow: hidden;
+    @include custom-transition(0.8s);
+    transition-delay: 0.6s;
+    .slick-container, .slick-list, .slick-track {
+        height: 100%;
     }
-    // Middle thumb
-    .middle-thumb-container {
-        height: 20%;
-        margin-top: 10px;
-        overflow: hidden;
-        .middle-single-item {
-            .middle-item {
-                width: 100%;
-                overflow: hidden;
-             }    
-        }
-        .middle-multiple-item {
-            .middle-item {
-                display: inline-block;
-                width: 49%;
-                float: right;
-                overflow: hidden;
-            }
-            .middle-item:first-child {
-                float: left;
-             }
-        }
+
+    .slick-list {
+        overflow: visible;
     }
-    
-    // Bottom text
-    .description {
-        height: 37%;
-        color: white;
-        overflow: hidden;
-        font-size: 15px;
-        line-height: 21px;
-        position: relative;
-        .readmore-container {
+    .slick-track {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 20px 0;
+    }
+
+    .custom-slick-slide {
+        height: 100%;
+        background-color: white;
+        margin: 0 10px;
+        background-color: rgba(0,0,0,0.7);
+        border-radius: 15px;
+        padding: 15px;
+        // Top thumb
+		.center-thumb-container, .middle-thumb-container, .description {
+			@include custom-transition(0.8s);
+			transition-delay: 0.6s;
+		}
+        .center-thumb-container {
             width: 100%;
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            text-align: center;
+            height: 40%;
+            overflow: hidden;
         }
-        .readmore-button {
-            background: grey;
-            font-size: 18px;
+        // Middle thumb
+        .middle-thumb-container {
+            opacity: 1;
+            height: 20%;
+            margin-top: 10px;
+            overflow: hidden;
+            .middle-single-item {
+                .middle-item {
+                    width: 100%;
+                    overflow: hidden;
+                }    
+            }
+            .middle-multiple-item {
+                .middle-item {
+                    display: inline-block;
+                    width: 49%;
+                    float: right;
+                    overflow: hidden;
+                }
+                .middle-item:first-child {
+                    float: left;
+                }
+            }
+        }
+        
+        // Bottom text
+        .description {
+            opacity: 1;
+            height: 37%;
             color: white;
-            text-align: center;
-            display: inline-block;
-            padding: 9px 44px;
-            border-radius: 27px;
+            overflow: hidden;
+            font-size: 15px;
+            line-height: 21px;
+            position: relative;
+            .readmore-container {
+                width: 100%;
+                position: absolute;
+                bottom: 15px;
+                left: 0;
+                text-align: center;
+            }
+            .readmore-button {
+                background: grey;
+                font-size: 18px;
+                color: white;
+                text-align: center;
+                display: inline-block;
+                padding: 9px 44px;
+                border-radius: 27px;
+            }
         }
+        
+    }
+}
+
+.timeline-container.single-open {
+    height: 18vh;
+    bottom: 5%;
+    @include custom-transition(0.5s);
+    .custom-slick-slide {
+        .center-thumb-container {
+            height: 100%;
+            @include custom-transition(0.5s);
+        }
+        .middle-thumb-container, .description {
+            opacity: 0;
+            @include custom-transition(0.5s);
+        }
+    }
+}
+
+.single-item {
+	opacity: 0;
+	@include custom-transition(0.4s);
+    position: fixed;
+    width: 85%;
+    left: 50%;
+    transform: translate(-50%);
+    height: 60vh;
+    bottom: 28%;
+    padding: 20px 10px;
+    color: rgba(244, 244, 244, 0.9);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 5px 8px;
+    border-radius: 15px;
+    overflow: hidden;
+    .toolbar {
+        position: relative;
+        padding: 5px 6px;
+        .back-to-text {
+            float: left;
+            font-style: italic;
+			color: rgba(244, 244, 244, 0.6);
+            &:hover {
+                text-decoration: underline;
+				color: rgba(244, 244, 244, 1);
+            }
+            margin-left: 5px;
+            margin-top: 8px;
+        }
+        .back-to-normal-slides {
+            float: right;
+            margin-right: 5px;
+            margin-top: 5px;
+            img {
+                height: 20px;
+                display: block;
+                padding: 2px;
+                border: 1px solid rgba(244, 244, 244, 0.9);
+                border-radius: 13px;
+            }
+        }
+        .event-title {
+            position: absolute;
+            text-align: center;
+			font-size: 1.3em;
+    		padding-top: 8px;
+        	font-weight: bold;
+			display: inline-block;
+			left: 50%;
+			transform: translate(-50%, 0);
+        }
+    }
+    .single-item-container {
+		text-align: center;
+		height: 100%;
+        padding: 40px 9px 6px 10px;
+        line-height: 1.5em;
+        font-size: 1.1em;    
+        .current-content {
+			height: 60%;
+        }
+		.contents {
+			display: inline-block;
+			height: 27%;
+			width: 80%;
+			.content-item {
+				width: 28%;
+				display: inline-block;
+				overflow: hidden;
+				margin-left: 10px;
+				border-radius: 10px;
+				height: 100%;
+				overflow: hidden;
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+		}
     }
     
 }
 
+.single-item.single-item-show {
+	opacity: 1;
+    @include custom-transition(0.6s);
+	transition-delay: 0.4s;
+}

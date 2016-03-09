@@ -11,15 +11,48 @@
     <!-- Header -->
     <div class="header">
         <div class="left-info">
-            <h1>Tekniikan museo</h1>
+            <span>Tekniikan museo</span>
         </div>
         <div class="right-info">
             
         </div>
     </div>
     
+    <!-- Single item-->
+    <div class="single-item" ng-class="{'single-item-show' : isSingleOpen}">
+        <div class="toolbar">
+            <div class="back-to-text">
+                <span>Back to overview</span>
+            </div>
+            <div class="event-title">
+                Title Title Title
+            </div>
+            <div class="back-to-normal-slides">
+                <img src="dist/assets/img/close-icon.png">
+            </div>
+        </div>
+        <div class="single-item-container">
+            <div class="current-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut accumsan tellus. Duis eleifend lectus ac nisi fringilla, vitae tristique orci fringilla. Aenean eleifend, tortor ac sodales lobortis, ex nibh aliquet nisi, vitae suscipit lectus nulla nec nulla. Praesent dictum suscipit libero sit amet gravida. Donec consectetur nulla vitae ex facilisis sodales. Nullam placerat sodales ex, ut cursus magna finibus id. In gravida, ipsum sed luctus bibendum, velit diam cursus ligula, et volutpat orci elit eget nunc.
+
+Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posuere. In hac habitasse platea dictumst. In elit tortor, maximus nec sem id, facilisis convallis sem. Aenean finibus justo neque, et ullamcorper ipsum faucibus at. Pellentesque orci erat, consectetur eu tempor non, iaculis ac ipsum. Vivamus sem dolor, varius eget neque ac, iaculis eleifend massa. Praesent euismod velit odio, eget dictum massa faucibus vel. Donec a rhoncus lacus. Ut dapibus dui vitae odio sollicitudin, nec tristique turpis molestie. Phasellus at pharetra elit. Nulla ut congue arcu, et scelerisque velit. Donec hendrerit, sapien sit amet commodo bibendum, velit urna cursus mauris, quis lobortis orci ex vitae libero. Fusce ut ornare nulla. Nunc sit amet auctor eros.
+            </div>
+            <div class="contents">
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+                <div class="content-item">
+                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Normal timeline-->
-    <div class="timeline-container">
+    <div ng-class="{'single-open' : isSingleOpen, 'timeline-container': true}" ng-click="toggleTimelineState()">
         <slick settings="slickConfig" class="slick-container" > 
             <div ng-repeat="event in events" class="custom-slick-slide">
                 <!-- Top item -->

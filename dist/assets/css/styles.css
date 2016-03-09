@@ -1,4 +1,18 @@
 @charset "UTF-8";
+.clearfix {
+  display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+/* close commented backslash hack */
 /*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */
 /*
 	Styles for basic PhotoSwipe functionality (sliding area, open/close transitions)
@@ -1010,24 +1024,24 @@ a.pswp__share--download:hover {
   width: 92%;
   left: 3%;
   height: 60vh;
-  top: 20%;
+  bottom: 20%;
   padding: 20px 10px;
+  transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.8s ease-in-out;
+  transition-delay: 0.6s;
 }
-
-.slick-container, .slick-list, .slick-track {
+.timeline-container .slick-container, .timeline-container .slick-list, .timeline-container .slick-track {
   height: 100%;
 }
-
-.slick-list {
+.timeline-container .slick-list {
   overflow: visible;
 }
-
-.slick-track {
+.timeline-container .slick-track {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 0;
 }
-
-.custom-slick-slide {
+.timeline-container .custom-slick-slide {
   height: 100%;
   background-color: white;
   margin: 0 10px;
@@ -1035,30 +1049,38 @@ a.pswp__share--download:hover {
   border-radius: 15px;
   padding: 15px;
 }
-.custom-slick-slide .center-thumb-container {
+.timeline-container .custom-slick-slide .center-thumb-container, .timeline-container .custom-slick-slide .middle-thumb-container, .timeline-container .custom-slick-slide .description {
+  transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.8s ease-in-out;
+  transition-delay: 0.6s;
+}
+.timeline-container .custom-slick-slide .center-thumb-container {
   width: 100%;
   height: 40%;
   overflow: hidden;
 }
-.custom-slick-slide .middle-thumb-container {
+.timeline-container .custom-slick-slide .middle-thumb-container {
+  opacity: 1;
   height: 20%;
   margin-top: 10px;
   overflow: hidden;
 }
-.custom-slick-slide .middle-thumb-container .middle-single-item .middle-item {
+.timeline-container .custom-slick-slide .middle-thumb-container .middle-single-item .middle-item {
   width: 100%;
   overflow: hidden;
 }
-.custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item {
+.timeline-container .custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item {
   display: inline-block;
   width: 49%;
   float: right;
   overflow: hidden;
 }
-.custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item:first-child {
+.timeline-container .custom-slick-slide .middle-thumb-container .middle-multiple-item .middle-item:first-child {
   float: left;
 }
-.custom-slick-slide .description {
+.timeline-container .custom-slick-slide .description {
+  opacity: 1;
   height: 37%;
   color: white;
   overflow: hidden;
@@ -1066,14 +1088,14 @@ a.pswp__share--download:hover {
   line-height: 21px;
   position: relative;
 }
-.custom-slick-slide .description .readmore-container {
+.timeline-container .custom-slick-slide .description .readmore-container {
   width: 100%;
   position: absolute;
   bottom: 15px;
   left: 0;
   text-align: center;
 }
-.custom-slick-slide .description .readmore-button {
+.timeline-container .custom-slick-slide .description .readmore-button {
   background: grey;
   font-size: 18px;
   color: white;
@@ -1081,6 +1103,119 @@ a.pswp__share--download:hover {
   display: inline-block;
   padding: 9px 44px;
   border-radius: 27px;
+}
+
+.timeline-container.single-open {
+  height: 18vh;
+  bottom: 5%;
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+.timeline-container.single-open .custom-slick-slide .center-thumb-container {
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+.timeline-container.single-open .custom-slick-slide .middle-thumb-container, .timeline-container.single-open .custom-slick-slide .description {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+
+.single-item {
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  position: fixed;
+  width: 85%;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  height: 60vh;
+  bottom: 28%;
+  padding: 20px 10px;
+  color: rgba(244, 244, 244, 0.9);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 8px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.single-item .toolbar {
+  position: relative;
+  padding: 5px 6px;
+}
+.single-item .toolbar .back-to-text {
+  float: left;
+  font-style: italic;
+  color: rgba(244, 244, 244, 0.6);
+  margin-left: 5px;
+  margin-top: 8px;
+}
+.single-item .toolbar .back-to-text:hover {
+  text-decoration: underline;
+  color: #f4f4f4;
+}
+.single-item .toolbar .back-to-normal-slides {
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.single-item .toolbar .back-to-normal-slides img {
+  height: 20px;
+  display: block;
+  padding: 2px;
+  border: 1px solid rgba(244, 244, 244, 0.9);
+  border-radius: 13px;
+}
+.single-item .toolbar .event-title {
+  position: absolute;
+  text-align: center;
+  font-size: 1.3em;
+  padding-top: 8px;
+  font-weight: bold;
+  display: inline-block;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+.single-item .single-item-container {
+  text-align: center;
+  height: 100%;
+  padding: 40px 9px 6px 10px;
+  line-height: 1.5em;
+  font-size: 1.1em;
+}
+.single-item .single-item-container .current-content {
+  height: 60%;
+}
+.single-item .single-item-container .contents {
+  display: inline-block;
+  height: 27%;
+  width: 80%;
+}
+.single-item .single-item-container .contents .content-item {
+  width: 28%;
+  display: inline-block;
+  overflow: hidden;
+  margin-left: 10px;
+  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
+}
+.single-item .single-item-container .contents .content-item:first-child {
+  margin-left: 0;
+}
+
+.single-item.single-item-show {
+  opacity: 1;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition-delay: 0.4s;
 }
 
 body {
@@ -1136,18 +1271,3 @@ img.resize-horizontal {
   clear: both;
   height: 0;
 }
-
-.clearfix {
-  display: inline-block;
-}
-
-/* start commented backslash hack \*/
-* html .clearfix {
-  height: 1%;
-}
-
-.clearfix {
-  display: block;
-}
-
-/* close commented backslash hack */

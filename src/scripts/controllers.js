@@ -26,7 +26,7 @@ timelineApp.controller("timelineController", ["$scope", function($scope) {
     
     $scope.slickConfig = {
         enabled: true,
-        draggable: false,  
+        draggable: true,  
         autoplaySpeed: 3000,
         slidesToShow: 3,
         method: {},
@@ -37,4 +37,10 @@ timelineApp.controller("timelineController", ["$scope", function($scope) {
             }
         }
     };
+    
+    // Single open state view models
+    $scope.isSingleOpen = true;
+    $scope.toggleTimelineState = function() {
+        $scope.isSingleOpen = !$scope.isSingleOpen;
+    }
 }]);
