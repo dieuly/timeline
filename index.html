@@ -54,27 +54,25 @@ Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posue
     <!-- Normal timeline-->
     <div ng-class="{'single-open' : isSingleOpen, 'timeline-container': true}">
         <slick settings="slickConfig" class="slick-container" > 
-            <div ng-repeat="event in events" class="custom-slick-slide" ng-click="openSingleItem($event)">
+            <div ng-repeat="event in events" class="custom-slick-slide">
                 <!-- Top item -->
                 <div class="center-thumb-container">
-                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                    <img class="" ng-src="{{event.firstItem}}" alt="">
                 </div>
                 
                 <!-- Middle item -->
                 <div class="middle-thumb-container">
                     <!-- For 1 item in the middle -->
-                    <div ng-if="event.hasSingleItem" class="middle-single-item">
+                    <div ng-if="event.hasSingleOtherContent" class="middle-single-item">
                         <div class="middle-item">
-                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                            <img class="" ng-src="{{event.otherContents[0].src}}" alt="">
                         </div>
                     </div>
                     <!-- For 2 item in the middle -->
-                    <div ng-if="!event.hasSingleItem" class="middle-multiple-item clearfix">
-                        <div class="middle-item">
-                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
-                        </div>
-                        <div class="middle-item">
-                            <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                    <div ng-if="!event.hasSingleOtherContent" class="middle-multiple-item clearfix">
+                        <div class="middle-item" ng-repeat="item in event.otherContents">
+                            <div ng-if="item.isVideo" ng-bind-html="item.src" ></div>
+                            <img ng-if="!item.isVideo" class="" ng-src="{{item.src}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -82,17 +80,11 @@ Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posue
                 <!-- Text -->
                 <div class="description">
                     <!-- For short enough text -->
-                    <div ng-if="event.isLongText">
-                        <p>{{event.text | elipsiWhatever: "300"}}</p>
+                    <div>
+                        <p>{{event.description | elipsiWhatever: "300"}}</p>
                         <div class="readmore-container">
                             <span class="readmore-button">Read more</span>    
                         </div>
-                        
-                    </div>
-                    <!-- For longer text -->
-                    <div ng-if="!event.isLongText">
-                        <p>{{event.text}}</p>
-                    </div>
                 </div>
                 
             </div> 

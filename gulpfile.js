@@ -24,6 +24,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
   return gulp.src([
+      'dataSource.js',
       'src/scripts/corelibs/*.js',
       'src/scripts/libs/*.js',
       'src/scripts/main.js',

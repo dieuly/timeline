@@ -1,5 +1,6 @@
 var timelineApp = angular.module("timelineApp", [
-    "slickCarousel"
+    "slickCarousel",
+    "ngSanitize"
 ])
 
 // Inital config
