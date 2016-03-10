@@ -1,0 +1,12 @@
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+@mixin custom-transition($duration) {
+    transition: all $duration ease-in-out;
+    -moz-transition: all $duration ease-in-out;
+    -webkit-transition: all $duration ease-in-out;
+}
+    
