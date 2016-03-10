@@ -1184,6 +1184,10 @@ a.pswp__share--download:hover {
           transform: translate(-50%, 0);
 }
 .single-item .single-item-container {
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  display: none;
   text-align: center;
   height: 100%;
   padding: 40px 9px 6px 10px;
@@ -1210,6 +1214,24 @@ a.pswp__share--download:hover {
 .single-item .single-item-container .contents .content-item:first-child {
   margin-left: 0;
 }
+.single-item .single-item-container .contents .content-item.is-video-content {
+  position: relative;
+}
+.single-item .single-item-container .contents .content-item.is-video-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(244, 244, 244, 0.1);
+}
+.single-item .single-item-container.is-all-contents-shown {
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  display: block;
+}
 
 .single-item.single-item-show {
   opacity: 1;
@@ -1217,6 +1239,33 @@ a.pswp__share--download:hover {
   -moz-transition: all 0.6s ease-in-out;
   -webkit-transition: all 0.6s ease-in-out;
   transition-delay: 0.4s;
+}
+
+.single-item.single-item-show.is-in-transition {
+  opacity: 0;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition-delay: 0.4s;
+}
+
+.single-content-container.is-all-contents-shown {
+  display: none;
+}
+
+.single-content-container {
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  display: block;
+  text-align: center;
+  height: 100%;
+  padding: 40px 9px 6px 10px;
+  line-height: 1.5em;
+  font-size: 1.1em;
+}
+.single-content-container > * {
+  display: inline-block;
 }
 
 body {
@@ -1252,6 +1301,10 @@ body:after {
 }
 .header .left-info {
   float: left;
+}
+.header .right-info {
+  float: right;
+  margin-right: 20px;
 }
 
 img.resize-vertical {

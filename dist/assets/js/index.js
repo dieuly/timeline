@@ -1095,7 +1095,7 @@ timelineApp.run(["$rootScope", function($rootScope) {
 // Todo: Maybe sound can be used as embed code as well
 // If has time: create embed code generator for sound and video
 'use strict';
-timelineApp.controller("timelineController", ["$scope", "$sce", function($scope, $sce) {
+timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", function($scope, $sce, $timeout) {
     
     // Preprocessing datasource
     
@@ -1123,7 +1123,13 @@ timelineApp.controller("timelineController", ["$scope", "$sce", function($scope,
     });
     
     $scope.events = dataSource;
-    console.log($scope.events);
+    $scope.currentOpenEvent = $scope.events[0];
+    $scope.currentSingleContent = $scope.currentOpenEvent.contents[0];
+    $scope.isSingleOpen = open;
+    $scope.isInTransition = false;
+    $scope.isAllContentsShow = true;
+    console.log($scope.currentOpenEvent);
+    console.log($scope.currentSingleContent);
     
     // Mock event for ng-repeat
     // var numberOfEvent = 5;
@@ -1150,11 +1156,25 @@ timelineApp.controller("timelineController", ["$scope", "$sce", function($scope,
         draggable: true,  
         autoplaySpeed: 3000,
         slidesToShow: 3,
+        event: {
+            beforeChange: function (event, slick, currentSlide, nextSlide) {
+                if ($scope.isSingleOpen && !$scope.isInTransition) {
+                    $scope.isInTransition = true;
+                }
+            },
+            afterChange: function (event, slick, nextSlide) {
+                if ($scope.isSingleOpen && $scope.isInTransition) {
+                    $timeout(function() {
+                        $scope.isAllContentsShow = true;
+                        $scope.currentOpenEvent = $scope.events[nextSlide];
+                        $scope.isInTransition = false;
+                    }, 600);    
+                }
+            }
+        }
     };
     
     // Single open state view models
-    $scope.isSingleOpen = false;
-    
     $scope.openSingleItem = function($event) {
         if (!$scope.isSingleOpen) {
             $scope.isSingleOpen = true;
@@ -1165,6 +1185,18 @@ timelineApp.controller("timelineController", ["$scope", "$sce", function($scope,
     
     $scope.closeSingleItem = function() {
         $scope.isSingleOpen = false;
+    }
+    
+    // Open content from item overview
+    $scope.openSingleContent = function($event) {
+        var idx = parseInt($event.currentTarget.attributes["data-content-idx"].nodeValue)
+        $scope.currentSingleContent = $scope.currentOpenEvent.contents[idx];
+        $scope.isAllContentsShow = false;
+    }
+    
+    $scope.backToOverview = function() {
+        $scope.isAllContentsShow = true;
+        $scope.currentSingleContent = {};
     }
 }]);
 /* global timelineApp */

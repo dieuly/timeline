@@ -14,40 +14,55 @@
             <span>Tekniikan museo</span>
         </div>
         <div class="right-info">
-            
+            <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+            <a class="a2a_button_facebook"></a>
+            <a class="a2a_button_twitter"></a>
+            <a class="a2a_button_google_plus"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <!-- AddToAny END -->
         </div>
     </div>
     
     <!-- Single item-->
-    <div class="single-item" ng-class="{'single-item-show' : isSingleOpen}">
+    <div class="single-item" ng-class="{'single-item-show' : isSingleOpen, 'is-in-transition': isInTransition}">
         <div class="toolbar">
-            <div class="back-to-text">
+            <div class="back-to-text" ng-click="backToOverview()" ng-show="!isAllContentsShow">
                 <span>Back to overview</span>
             </div>
             <div class="event-title">
-                Title Title Title
+                {{currentOpenEvent.title}}
             </div>
             <div class="back-to-normal-slides" ng-click="closeSingleItem()">
                 <img src="dist/assets/img/close-icon.png">
             </div>
         </div>
-        <div class="single-item-container">
+        
+        <!-- Overview-->
+        <div ng-class="{'single-item-container': true, 'is-all-contents-shown': isAllContentsShow}">
             <div class="current-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut accumsan tellus. Duis eleifend lectus ac nisi fringilla, vitae tristique orci fringilla. Aenean eleifend, tortor ac sodales lobortis, ex nibh aliquet nisi, vitae suscipit lectus nulla nec nulla. Praesent dictum suscipit libero sit amet gravida. Donec consectetur nulla vitae ex facilisis sodales. Nullam placerat sodales ex, ut cursus magna finibus id. In gravida, ipsum sed luctus bibendum, velit diam cursus ligula, et volutpat orci elit eget nunc.
-
-Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posuere. In hac habitasse platea dictumst. In elit tortor, maximus nec sem id, facilisis convallis sem. Aenean finibus justo neque, et ullamcorper ipsum faucibus at. Pellentesque orci erat, consectetur eu tempor non, iaculis ac ipsum. Vivamus sem dolor, varius eget neque ac, iaculis eleifend massa. Praesent euismod velit odio, eget dictum massa faucibus vel. Donec a rhoncus lacus. Ut dapibus dui vitae odio sollicitudin, nec tristique turpis molestie. Phasellus at pharetra elit. Nulla ut congue arcu, et scelerisque velit. Donec hendrerit, sapien sit amet commodo bibendum, velit urna cursus mauris, quis lobortis orci ex vitae libero. Fusce ut ornare nulla. Nunc sit amet auctor eros.
+                {{currentOpenEvent.description}}
             </div>
             <div class="contents">
-                <div class="content-item">
-                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
+                <div ng-click="openSingleContent($event)" 
+                    ng-class="{'content-item': true, 'is-video-content': content.isVideo}" 
+                    ng-repeat="content in currentOpenEvent.contents"
+                    data-content-idx="{{$index}}">
+                    <div ng-if="content.isVideo" ng-bind-html="content.src" ng-click=""></div>
+                    <img ng-if="!content.isVideo" ng-src="{{content.src}}" alt="" ng-click="">
                 </div>
-                <div class="content-item">
+                <!--<div class="content-item">
                     <img class="" src="dist/assets/img/placeholder.jpg" alt="">
-                </div>
-                <div class="content-item">
-                    <img class="" src="dist/assets/img/placeholder.jpg" alt="">
-                </div>
+                </div>-->
             </div>
+        </div>
+        
+        <!-- Single content -->
+        <div ng-class="{'single-content-container': true, 'is-all-contents-shown': isAllContentsShow}">
+             <div ng-if="currentSingleContent.isVideo" ng-bind-html="currentSingleContent.src"></div>
+             <img ng-if="!currentSingleContent.isVideo" ng-src="{{currentSingleContent.src}}" alt="">
         </div>
     </div>
     
@@ -66,7 +81,7 @@ Nulla vel efficitur neque, et sagittis mi. Aliquam vestibulum eu justo non posue
                     <div ng-if="event.hasSingleOtherContent" class="middle-single-item">
                         <div class="middle-item">
                             <div ng-if="event.otherContents[0].isVideo" ng-bind-html="event.otherContents[0].src"></div>
-                            <img ng-if="event.otherContents[0].isVideo" ng-src="{{event.otherContents[0].src}}" alt="">
+                            <img ng-if="!event.otherContents[0].isVideo" ng-src="{{event.otherContents[0].src}}" alt="">
                         </div>
                     </div>
                     <!-- For 2 item in the middle -->
