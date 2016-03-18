@@ -1,0 +1,37 @@
+{
+  "name": "timeline",
+  "version": "1.0.0",
+  "description": "<p>The Timeline project for Innovation project course </p>\r <p>This is: <a href=\"https://docs.google.com/spreadsheets/d/1qrRlF-4L_TjlUww65YYXkMqgTNp8O-wheIMAlia-0gQ/edit#gid=0\" title=\"backlog\">backlog</a></p>",
+  "main": "datasource.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.2",
+    "del": "^2.2.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-ruby-sass": "^2.0.6",
+    "xlsx-to-json": "^0.2.4",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dieuly/timeline.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dieuly/timeline/issues"
+  },
+  "homepage": "https://github.com/dieuly/timeline#readme"
+}
