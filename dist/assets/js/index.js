@@ -1095,8 +1095,10 @@ timelineApp.run(["$rootScope", function($rootScope) {
 // Todo: Maybe sound can be used as embed code as well
 // If has time: create embed code generator for sound and video
 'use strict';
-timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", function($scope, $sce, $timeout) {
+timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", "$window", 
+    function($scope, $sce, $timeout, $window) {
     
+    var initialSlide = 1;
     // Preprocessing datasource
     
     function generateItemsArray(orgArray) {
@@ -1123,13 +1125,11 @@ timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", func
     });
     
     $scope.events = dataSource;
-    $scope.currentOpenEvent = $scope.events[0];
+    $scope.currentOpenEvent = $scope.events[initialSlide];
     $scope.currentSingleContent = $scope.currentOpenEvent.contents[0];
     $scope.isSingleOpen = open;
     $scope.isInTransition = false;
     $scope.isAllContentsShow = true;
-    console.log($scope.currentOpenEvent);
-    console.log($scope.currentSingleContent);
     
     // Mock event for ng-repeat
     // var numberOfEvent = 5;
@@ -1154,33 +1154,44 @@ timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", func
     $scope.slickConfig = {
         enabled: true,
         draggable: true,  
-        autoplaySpeed: 3000,
+        autoplay: true,
+        autoplaySpeed: 5000,
         slidesToShow: 3,
+        initialSlide: initialSlide,
+        nextArrow: '.next_caro',
+        prevArrow: '.previous_caro',
+        pauseOnDotsHover: true,
         event: {
-            beforeChange: function (event, slick, currentSlide, nextSlide) {
-                if ($scope.isSingleOpen && !$scope.isInTransition) {
-                    $scope.isInTransition = true;
-                }
-            },
-            afterChange: function (event, slick, nextSlide) {
-                if ($scope.isSingleOpen && $scope.isInTransition) {
-                    $timeout(function() {
-                        $scope.isAllContentsShow = true;
-                        $scope.currentOpenEvent = $scope.events[nextSlide];
-                        $scope.isInTransition = false;
-                    }, 600);    
-                }
-            }
+            beforeChange: beforeChangeHandler,
+            afterChange: afterChangeHandler
         }
     };
     
+    function beforeChangeHandler(event, slick, currentSlide, nextSlide) {
+        if ($scope.isSingleOpen && !$scope.isInTransition) {
+            $scope.isInTransition = true;
+        }
+    }
+    
+    function afterChangeHandler(event, slick, nextSlide) {
+        if ($scope.isSingleOpen && $scope.isInTransition) {
+            $timeout(function() {
+                $scope.isAllContentsShow = true;
+                $scope.currentOpenEvent = $scope.events[nextSlide];
+                $scope.isInTransition = false;
+            }, 600);    
+        }
+    }
+    
     // Single open state view models
     $scope.openSingleItem = function($event) {
+        var newSlideIndex = $event.currentTarget.attributes["data-slick-index"].nodeValue;
         if (!$scope.isSingleOpen) {
             $scope.isSingleOpen = true;
+        } else {
+            beforeChangeHandler();
+            afterChangeHandler(null, null, newSlideIndex);
         }
-        var currentSlideIndex = $event.currentTarget.parentNode.parentNode.parentNode.attributes["data-slick-index"].nodeValue;
-        console.log(currentSlideIndex);
     }
     
     $scope.closeSingleItem = function() {
