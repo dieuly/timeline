@@ -1,7 +1,8 @@
 .timeline-container {
     position: fixed;
     width: 92%;
-    left: 3%;
+    left: 50%;
+    transform: translateX(-18%);
     height: 60vh;
     bottom: 20%;
     padding: 20px 10px;
@@ -33,7 +34,7 @@
 		}
         .center-thumb-container {
             width: 100%;
-            height: 40%;
+            height: 70%;
             overflow: hidden;
         }
         // Middle thumb
@@ -234,4 +235,19 @@
     > * {
         display: inline-block;
     }    
+}
+
+.previous_caro img {
+    height: 10%;
+    position: fixed;
+    top: 45%;
+    left: 1%;
+    transform: rotate(180deg);
+}
+
+.next_caro img {
+    height: 10%;
+    position: fixed;
+    top: 45%;
+    right: 1%;
 }
