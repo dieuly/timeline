@@ -1192,7 +1192,7 @@ a.pswp__share--download:hover {
   display: none;
   text-align: center;
   height: 100%;
-  padding: 40px 9px 6px 10px;
+  padding: 0px 9px 6px 10px;
   line-height: 1.5em;
   font-size: 1.1em;
 }
@@ -1319,6 +1319,37 @@ body:after {
 }
 .header .left-info {
   float: left;
+  text-align: center;
+  font-size: 1em;
+  padding-top: 8px;
+  font-weight: normal;
+  text-decoration: underline;
+  font-style: italic;
+}
+.header .left-info:hover {
+  cursor: pointer;
+}
+.header .event-title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 70%;
+  text-align: center;
+  font-size: 1.3em;
+  padding-top: 8px;
+  font-weight: bold;
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+}
+.header .event-title.is-in-transition {
+  transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  opacity: 0;
+  transition-delay: 0.4s;
 }
 .header .right-info {
   float: right;

@@ -75,6 +75,14 @@ timelineApp.controller("timelineController", ["$scope", "$sce", "$timeout", "$wi
         }
     };
     
+    $scope.autoPlayBtnText = "Stop autoplay";
+    
+    $scope.toggleAutoplay = function() {
+        $scope.slickConfig.autoplay = !$scope.slickConfig.autoplay;
+        $scope.autoPlayBtnText = $scope.slickConfig.autoplay ?
+            "Stop autoplay" : "Resume autoplay";
+    }
+    
     function beforeChangeHandler(event, slick, currentSlide, nextSlide) {
         if ($scope.isSingleOpen && !$scope.isInTransition) {
             $scope.isInTransition = true;

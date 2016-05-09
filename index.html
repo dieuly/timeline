@@ -11,7 +11,10 @@
     <!-- Header -->
     <div class="header">
         <div class="left-info">
-            <span>Tekniikan museo</span>
+            <span ng-click="toggleAutoplay()">{{autoPlayBtnText}}</span>
+        </div>
+        <div ng-class="{'event-title': true, 'is-in-transition': isInTransition}" ng-show="isSingleOpen">
+            {{currentOpenEvent.title}}
         </div>
         <div class="right-info">
             <!-- AddToAny BEGIN -->
@@ -32,9 +35,9 @@
             <div class="back-to-text" ng-click="backToOverview()" ng-show="!isAllContentsShow">
                 <span>Back to overview</span>
             </div>
-            <div class="event-title">
+            <!--<div class="event-title">
                 {{currentOpenEvent.title}}
-            </div>
+            </div>-->
             <div class="back-to-normal-slides" ng-click="closeSingleItem()">
                 <img src="dist/assets/img/close-icon.png">
             </div>
