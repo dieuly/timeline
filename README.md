@@ -25,3 +25,7 @@ Soucre files for development are in ```src``` folder. Distribution files are in 
 - Cannot use command ```node``` nor ```npm``` in Debian based system: http://stackoverflow.com/questions/21168141/cannot-install-packages-using-node-package-manager-in-ubuntu
 - Multiple package build failures when running ```npm install```. Check if ```node-gyp``` is properly installed and built: https://github.com/nodejs/node-gyp
 - ```gulp``` and ```gulp watch``` commands fail with ```Error: watch null EPERM```. Try running the command one more time. 
+
+### What is the software license?
+
+MIT
