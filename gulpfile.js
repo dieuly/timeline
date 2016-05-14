@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     del = require('del');
+    dataSourceGenerator = require("./generateDataSource");
     
     
 gulp.task('styles', function() {
@@ -24,7 +25,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
   return gulp.src([
-      'dataSource.js',
+      'datasource.js',
       'src/scripts/corelibs/*.js',
       'src/scripts/libs/*.js',
       'src/scripts/main.js',
@@ -49,7 +50,11 @@ gulp.task('clean', function() {
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images');
+    dataSourceGenerator();
+    setTimeout(function() {
+        gulp.start('styles', 'scripts', 'images');    
+    }, 2000);
+    
 });
 
 // Watch

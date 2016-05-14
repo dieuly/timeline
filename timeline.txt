@@ -1,0 +1,15 @@
+- Autoplay after idle time 
+- Edit/Create new timeline LIVE
+
+Bugs:
+
+- wwrong position of slides x
+- choosing slide by clinkcing directly on a certain slide x
+- navigation button? x
+- original state has too much content x
+- show date in orignal/open states x
+- empty slides x 
+
+- stop autoplay manually?
+- video is run after slide changed ???
+- why gulp twice?
